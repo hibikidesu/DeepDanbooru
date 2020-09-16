@@ -107,7 +107,7 @@ def train_project(project_path, source_model):
 
     manager = tf.train.CheckpointManager(
         checkpoint=checkpoint,
-        directory=os.path.join(project_path, 'checkpoints'),
+        directory="/content/drive/My Drive/model/checkpoints",
         max_to_keep=3)
 
     if manager.latest_checkpoint:
@@ -206,12 +206,12 @@ def train_project(project_path, source_model):
         if int(used_epoch) % export_model_per_epoch == 0:
             print('Saving model ... (per epoch {export_model_per_epoch})')
             export_path = os.path.join(
-                project_path, f'model-{model_type}.h5.e{int(used_epoch)}')
+                "/content/drive/My Drive/model", f'model-{model_type}.h5.e{int(used_epoch)}')
             model.save(export_path, include_optimizer=False, save_format='h5')
 
     print('Saving model ...')
     model_path = os.path.join(
-        project_path, f'model-{model_type}.h5')
+        "/content/drive/My Drive/model", f'model-{model_type}.h5')
 
     # tf.keras.experimental.export_saved_model throw exception now
     # see https://github.com/tensorflow/tensorflow/issues/27112
